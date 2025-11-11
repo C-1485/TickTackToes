@@ -2,6 +2,6 @@
 
 int main()
 {
-    //GenerateGrid();
-    GenerateMultiGrids();
+    //GenerateMultiGrids();
+    GenGrid();
 }
