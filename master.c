@@ -113,7 +113,11 @@ void GenGrid()
         {
             if ((i + 1) != SIZE*SIZE)
             {
-                if ((sep_j != 0) && (sep_j % SIZE == 0) && (sep_j < SIZE*SIZE - 1))
+                if ((sep_j != 0) && (sep_j % SIZE == 0) && (sep_j < SIZE*SIZE - 1) && (i + 1) % SIZE == 0)
+                {
+                    printf("  ");
+                }
+                else if ((sep_j != 0) && (sep_j % SIZE == 0) && (sep_j < SIZE*SIZE - 1))
                 {
                     printf("||");
                 }
