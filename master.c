@@ -87,6 +87,8 @@ void GenGrid()
         }
     }
 
+    printf("\n\n");
+
     for (int i = 0; i < SIZE*SIZE; i++)
     {
         for (int j = 0; j < SIZE; j++)
@@ -106,22 +108,33 @@ void GenGrid()
         }
         printf("\n");
 
-        // horizontal separator between rows
+        // horizontal separators between rows
         for (int sep_j = 0; sep_j < SIZE*SIZE; sep_j++)
         {
-            if ((sep_j != 0) && (sep_j % SIZE == 0) && (sep_j < SIZE*SIZE - 1))
+            if ((i + 1) != SIZE*SIZE)
             {
-                printf("||");
-            }
+                if ((sep_j != 0) && (sep_j % SIZE == 0) && (sep_j < SIZE*SIZE - 1))
+                {
+                    printf("||");
+                }
 
-            printf("---");
-            if ((sep_j + 1) % (SIZE) != 0)
-            {
-                printf("+");
+                if ((i + 1) % SIZE == 0)
+                {
+                    printf("===");
+                }
+                else if ((i + 1) % SIZE != 0)
+                {
+                    printf("---");
+                }
+
+                if ((sep_j + 1) % (SIZE) != 0)
+                {
+                    printf("+");
+                }
             }
         }
-
         printf("\n");
+
     }
     printf("\n");
 }
