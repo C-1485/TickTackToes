@@ -2,90 +2,25 @@
 
 #include "master.h"
 
-void GenerateMultiGrids()
+char grid[SIZE*SIZE][SIZE][SIZE];
+
+void InitGrid()
 {
-    char multigrids[SIZE*SIZE][SIZE*SIZE];
-
-    for (int i = 0; i < SIZE * SIZE; i++)
-    {
-        for (int j = 0; j < SIZE * SIZE; j++)
-        {
-            multigrids[i][j] = ' ';
-        }
-    }
-
-    printf("\n");
-
-    for (int i = 0; i < SIZE * SIZE; i++)
-    {
-        for (int j = 0; j < SIZE * SIZE; j++)
-        {
-            printf(" %c ", multigrids[i][j]);
-
-            if ((j + 1) % SIZE == 0 && j != SIZE * SIZE - 1)
-            {
-                printf(" || ");
-            }
-            else if (j < SIZE * SIZE - 1)
-            {
-                printf("|");
-            }
-        }
-        printf("\n");
-
-        if ((i + 1) % SIZE == 0 && i != SIZE * SIZE - 1)
-        {
-            for (int k = 0; k < SIZE * SIZE; k++)
-            {
-                printf("---");
-
-                if ((k + 1) % SIZE == 0 && k != SIZE * SIZE - 1)
-                {
-                    printf(" || ");
-                }
-                else if (k < SIZE * SIZE - 1)
-                {
-                    printf("+");
-                }
-            }
-            printf("\n============================\n");
-        }
-        else if (i < SIZE * SIZE - 1)
-        {
-            for (int k = 0; k < SIZE * SIZE; k++)
-            {
-                printf("---");
-
-                if ((k + 1) % SIZE == 0 && k != SIZE * SIZE - 1)
-                {
-                    printf(" || ");
-                }
-                else if (k < SIZE * SIZE - 1)
-                {
-                    printf("+");
-                }
-            }
-            printf("\n");
-        }
-    }
-    printf("\n");
-}
-
-void GenGrid()
-{
-    char grid[SIZE*SIZE][SIZE][SIZE];
-
-    // fill grid with tmp values
+    // fill grid with empty spaces
     for (int i = 0; i < SIZE*SIZE; i++)
     {
         for (int j = 0; j < SIZE; j++)
         {
             for (int k = 0; k < SIZE; k++)
             {
-                grid[i][j][k] = '+';
+                grid[i][j][k] = ' ';
             }
         }
     }
+}
+
+void GenGrid()
+{
 
     printf("\n\n");
 
@@ -141,4 +76,54 @@ void GenGrid()
 
     }
     printf("\n");
+
+}
+
+void MarkMatrix(int *mark_matrix_idx)
+{
+    for (int i = 0; i < SIZE; i++)
+    {
+        for (int j = 0; j < SIZE; j++)
+        {
+            if (mark_matrix_idx)
+            {
+                break;
+            }
+        }
+    }
+}
+
+void Matrix(int *matrix_idx)
+{
+    int game_on = 1;
+    int user_input;
+
+    while (game_on)
+    {
+        scanf("%d", &user_input);
+
+        switch (user_input)
+        {
+            case 1:
+                MarkMatrix(&user_input);
+        }
+    }
+}
+
+void MainGame()
+{
+    int val;
+    scanf("%d", &val);
+
+    switch (val)
+    {
+        case 1:
+            Matrix(&val);
+            break;
+        default:
+            printf("values between 1-9");
+            break;
+    }
+
+
 }

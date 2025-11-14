@@ -3,7 +3,14 @@
 
 #define SIZE 3
 
-void GenerateMultiGrids();
+void InitGrid();
+
 void GenGrid();
+
+void MarkMatrix(int *mark_matrix_idx);
+
+void Matrix(int *matrix_idx);
+
+void Game();
 
 #endif
