@@ -21,7 +21,6 @@ void InitGrid()
 
 void GenGrid()
 {
-
     printf("\n\n");
 
     for (int grid_row = 0; grid_row < SIZE; grid_row++)
@@ -30,7 +29,7 @@ void GenGrid()
         {
             for (int grid_col = 0; grid_col < SIZE; grid_col++)
             {
-                int grid_board = grid_row * 3 + grid_col;
+                int grid_board = grid_row * SIZE + grid_col;
 
                 for (int cell_col = 0; cell_col < SIZE; cell_col++)
                 {
@@ -41,11 +40,23 @@ void GenGrid()
                         printf(" |");
                     }
                 }
+                if (grid_col < 2)
+                {
+                    printf(" ||");
+                }
             }
+            if (cell_row < 2)
+            {
+                printf("\n---+---+---||---+---+---||---+---+---\n");
+            }
+
+        }
+        if (grid_row < 2)
+        {
+            printf("\n===+===+===  ===+===+===  ===+===+===\n");
         }
     }
-
-
+    printf("\n\n");
 }
 
 void SelectGridCell(int *select_grid, int *select_grid_cell)
