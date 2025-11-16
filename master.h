@@ -7,9 +7,9 @@ void InitGrid();
 
 void GenGrid();
 
-void MarkMatrix(int *mark_matrix_idx);
+void SelectGridCell(int *select_grid, int *select_grid_cell);
 
-void Matrix(int *matrix_idx);
+void SelectGrid(int *select_grid);
 
 void Game();
 

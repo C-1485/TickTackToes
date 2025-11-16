@@ -13,7 +13,7 @@ void InitGrid()
         {
             for (int k = 0; k < SIZE; k++)
             {
-                grid[i][j][k] = ' ';
+                grid[i][j][k] = 'x';
             }
         }
     }
@@ -24,101 +24,63 @@ void GenGrid()
 
     printf("\n\n");
 
-    for (int i = 0; i < SIZE*SIZE; i++)
+    for (int grid_row = 0; grid_row < SIZE; grid_row++)
     {
-        for (int j = 0; j < SIZE; j++)
+        for (int cell_row = 0; cell_row < SIZE; cell_row++)
         {
-            for (int k = 0; k < SIZE; k++)
+            for (int grid_col = 0; grid_col < SIZE; grid_col++)
             {
-                if (k % SIZE != 0)
-                {
-                    printf(" |");
-                }
-                printf(" %c", grid[i][j][k]);
-            }
-            if (j < SIZE - 1)
-            {
-                printf (" ||");
-            }
-        }
-        printf("\n");
+                int grid_board = grid_row * 3 + grid_col;
 
-        // horizontal separators between rows
-        for (int sep_j = 0; sep_j < SIZE*SIZE; sep_j++)
-        {
-            if ((i + 1) != SIZE*SIZE)
-            {
-                if ((sep_j != 0) && (sep_j % SIZE == 0) && (sep_j < SIZE*SIZE - 1) && (i + 1) % SIZE == 0)
+                for (int cell_col = 0; cell_col < SIZE; cell_col++)
                 {
-                    printf("  ");
-                }
-                else if ((sep_j != 0) && (sep_j % SIZE == 0) && (sep_j < SIZE*SIZE - 1))
-                {
-                    printf("||");
-                }
+                    printf(" %c", grid[grid_board][cell_row][cell_col]);
 
-                if ((i + 1) % SIZE == 0)
-                {
-                    printf("===");
-                }
-                else if ((i + 1) % SIZE != 0)
-                {
-                    printf("---");
-                }
-
-                if ((sep_j + 1) % (SIZE) != 0)
-                {
-                    printf("+");
+                    if (cell_col < 2)
+                    {
+                        printf(" |");
+                    }
                 }
             }
         }
-        printf("\n");
-
     }
-    printf("\n");
+
 
 }
 
-void MarkMatrix(int *mark_matrix_idx)
+void SelectGridCell(int *select_grid, int *select_grid_cell)
 {
-    for (int i = 0; i < SIZE; i++)
-    {
-        for (int j = 0; j < SIZE; j++)
-        {
-            if (mark_matrix_idx)
-            {
-                break;
-            }
-        }
-    }
+
 }
 
-void Matrix(int *matrix_idx)
+void SelectGrid(int *select_grid)
 {
     int game_on = 1;
-    int user_input;
+    int selected_grid = SIZE * SIZE - *select_grid;
+    int select_grid_cell;
+    int selected_grid_cell;
 
     while (game_on)
     {
-        scanf("%d", &user_input);
+        scanf("%d", &select_grid_cell);
 
-        switch (user_input)
+        switch (*select_grid)
         {
             case 1:
-                MarkMatrix(&user_input);
+                SelectGridCell(&selected_grid, &selected_grid_cell);
         }
     }
 }
 
-void MainGame()
+void Game()
 {
-    int val;
-    scanf("%d", &val);
+    int select_grid;
+    scanf("%d", &select_grid);
 
-    switch (val)
+    switch (select_grid)
     {
         case 1:
-            Matrix(&val);
+            SelectGrid(&select_grid);
             break;
         default:
             printf("values between 1-9");
