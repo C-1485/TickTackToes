@@ -21,8 +21,6 @@ void InitGrid()
 
 void GenGrid()
 {
-    grid[1][2][0] = 'x';
-    grid[7][1][1] = 'x';
     printf("\n\n");
 
     for (int grid_row = SIZE - 1; grid_row > -1; grid_row--)
@@ -63,15 +61,25 @@ void GenGrid()
 
 void SelectGridCell(int *select_grid, int *select_grid_cell)
 {
+    for (int i = SIZE - 1; i > -1; i--)
+    {
+        for (int j = 0; j < SIZE; j++)
+        {
+            int cell = i * SIZE + j;
 
+            if (cell == *select_grid_cell - 1)
+            {
+                grid[*select_grid - 1][i][j] = 'x';
+            }
+        }
+
+    }
 }
 
 void SelectGrid(int *select_grid)
 {
     int game_on = 1;
-    int selected_grid = SIZE * SIZE - *select_grid;
     int select_grid_cell;
-    int selected_grid_cell;
 
     while (game_on)
     {
@@ -80,7 +88,12 @@ void SelectGrid(int *select_grid)
         switch (*select_grid)
         {
             case 1:
-                SelectGridCell(&selected_grid, &selected_grid_cell);
+                SelectGridCell(select_grid, &select_grid_cell);
+                game_on = 0;
+                break;
+            default:
+                printf("select a cell");
+                break;
         }
     }
 }

@@ -4,5 +4,10 @@
 int main()
 {
     InitGrid();
-    GenGrid();
+    while (1)
+    {
+
+        GenGrid();
+        Game();
+    }
 }
