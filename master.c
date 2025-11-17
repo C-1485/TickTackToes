@@ -4,6 +4,7 @@
 #include "master.h"
 
 char grid[SIZE*SIZE][SIZE][SIZE];
+char mark[2] = {'x', 'o'};
 
 void InitGrid()
 {
@@ -105,12 +106,27 @@ void Game()
     struct Players *bot;
 
     player->player = 0;
+    player->cell_mark = mark[rand() % 2];
+
     bot->player = 1;
+    if (player->cell_mark == mark[0])
+    {
+        bot->cell_mark = mark[1];
+    }
+    else
+    {
+        bot->cell_mark = mark[0];
+    }
+
+    // ====
 
     int first_plays = rand() % 2;
 
     int select_grid;
-    scanf("%d", &select_grid);
+
+    if (first_plays == 0){
+        scanf("%d", &select_grid);
+    }
 
     switch (select_grid)
     {

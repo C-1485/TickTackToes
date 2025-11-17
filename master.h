@@ -6,6 +6,7 @@
 struct Players
 {
     int player;
+    char cell_mark;
     int score;
 };
 
