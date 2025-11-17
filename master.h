@@ -3,6 +3,12 @@
 
 #define SIZE 3
 
+struct Players
+{
+    int player;
+    int score;
+};
+
 void InitGrid();
 
 void GenGrid();

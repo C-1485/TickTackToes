@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "master.h"
 
@@ -100,6 +101,14 @@ void SelectGrid(int *select_grid)
 
 void Game()
 {
+    struct Players *player;
+    struct Players *bot;
+
+    player->player = 0;
+    bot->player = 1;
+
+    int first_plays = rand() % 2;
+
     int select_grid;
     scanf("%d", &select_grid);
 
