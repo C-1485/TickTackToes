@@ -13,7 +13,7 @@ void InitGrid()
         {
             for (int k = 0; k < SIZE; k++)
             {
-                grid[i][j][k] = 'x';
+                grid[i][j][k] = ' ';
             }
         }
     }
@@ -21,11 +21,13 @@ void InitGrid()
 
 void GenGrid()
 {
+    grid[1][2][0] = 'x';
+    grid[7][1][1] = 'x';
     printf("\n\n");
 
-    for (int grid_row = 0; grid_row < SIZE; grid_row++)
+    for (int grid_row = SIZE - 1; grid_row > -1; grid_row--)
     {
-        for (int cell_row = 0; cell_row < SIZE; cell_row++)
+        for (int cell_row = SIZE - 1; cell_row > -1; cell_row--)
         {
             for (int grid_col = 0; grid_col < SIZE; grid_col++)
             {
@@ -45,13 +47,13 @@ void GenGrid()
                     printf(" ||");
                 }
             }
-            if (cell_row < 2)
+            if (cell_row > 0)
             {
                 printf("\n---+---+---||---+---+---||---+---+---\n");
             }
 
         }
-        if (grid_row < 2)
+        if (grid_row > 0)
         {
             printf("\n===+===+===  ===+===+===  ===+===+===\n");
         }
