@@ -4,7 +4,7 @@
 
 #include "master.h"
 
-void InitGrid(char grid[SSIZE][SIZE][SIZE])
+void InitGrid(Grid grid)
 {
     // fill grid with empty spaces
     for (int i = 0; i < SIZE*SIZE; i++)
@@ -19,7 +19,7 @@ void InitGrid(char grid[SSIZE][SIZE][SIZE])
     }
 }
 
-void GenGrid(char grid[SSIZE][SIZE][SIZE])
+void GenGrid(Grid grid)
 {
     printf("\n\n");
 
@@ -93,7 +93,7 @@ void SelectGrid(int *select_grid, int *player)
     }
 }
 
-void PlayerGridCellSelection(int *grid_selection, struct Players *player)
+void PlayerGridCellSelection(Grid grid, int *grid_selection, struct Players *player)
 {
     int game_on = 1;
     int player_turn = player->player;
@@ -110,19 +110,20 @@ void PlayerGridCellSelection(int *grid_selection, struct Players *player)
     }
 }
 
-void PlayersGridSelection(int *grid_selection, struct Players *player)
+void PlayersGridSelection(Grid grid, int *grid_selection, struct Players *player)
 {
-    for (int grid = 1; grid <= SIZE*SIZE; grid++)
+    for (int grid_idx = 1; grid_idx <= SIZE*SIZE; grid_idx++)
     {
-        if (grid == *grid_selection)
+        if (grid_idx == *grid_selection)
         {
-            PlayerGridCellSelection(grid_selection, player);
+            PlayerGridCellSelection(grid, grid_selection, player);
         }
     }
 }
 
-void Game(struct Players *player, struct Players *bot, bool *game_on)
+void Game(Grid grid, struct Players *player, struct Players *bot)
 {
+    bool game_on = true;
 
     //int first_plays = rand() % 2;
     int first_plays = 0;
@@ -130,14 +131,20 @@ void Game(struct Players *player, struct Players *bot, bool *game_on)
     int select_grid;
     int bot_select_grid;
 
-    if (first_plays == 0){
-        scanf("%d", &select_grid);
-        PlayersGridSelection(&select_grid, player);
-    }
-    else
+    while (game_on)
     {
-        bot_select_grid = rand() % 8 + 1;
-        PlayersGridSelection(&bot_select_grid, bot);
+        if (first_plays == 0){
+            scanf("%d", &select_grid);
+            PlayersGridSelection(grid, &select_grid, player);
+        }
+        /*
+        else
+        {
+            bot_select_grid = rand() % 8 + 1;
+            PlayersGridSelection(&bot_select_grid, bot);
+        }
+        */
     }
+
 
 }

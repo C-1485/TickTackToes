@@ -4,6 +4,8 @@
 #define SIZE 3
 #define SSIZE 9
 
+typedef char Grid[SSIZE][SIZE][SIZE];
+
 struct Players
 {
     int player;
@@ -11,18 +13,18 @@ struct Players
     int score;
 };
 
-void InitGrid(char grid[SSIZE][SIZE][SIZE]);
+void InitGrid(Grid grid);
 
-void GenGrid(char grid[SSIZE][SIZE][SIZE]);
+void GenGrid(Grid grid);
 
 void SelectGridCell(int *select_grid, int *select_grid_cell, struct Players *player);
 
 void SelectGrid(int *select_grid, int *player);
 
-void PlayerGridCellSelection(int *grid_selection, struct Players *player);
+void PlayerGridCellSelection(Grid grid, int *grid_selection, struct Players *player);
 
-void PlayersGridSelection(int *grid_selection, struct Players *player);
+void PlayerGridSelection(Grid grid, int *grid_selection, struct Players *player);
 
-void Game(struct Players *player, struct Players *bot, bool *game_on);
+void Game(Grid grid, struct Players *player, struct Players *bot);
 
 #endif

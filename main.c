@@ -6,7 +6,7 @@
 
 int main()
 {
-    char grid[SIZE*SIZE][SIZE][SIZE];
+    Grid grid;
     char mark[2] = {'x', 'o'};
 
     InitGrid(grid);
@@ -32,11 +32,7 @@ int main()
 
     bool game_on = true;
 
-    while (game_on)
-    {
-        GenGrid(grid);
-        Game(player, bot, &game_on);
-    }
+    Game(grid, player, bot);
 
 
     // ====
