@@ -1,12 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #include "master.h"
 
-char grid[SIZE*SIZE][SIZE][SIZE];
-char mark[2] = {'x', 'o'};
-
-void InitGrid()
+void InitGrid(char grid[SSIZE][SIZE][SIZE])
 {
     // fill grid with empty spaces
     for (int i = 0; i < SIZE*SIZE; i++)
@@ -21,7 +19,7 @@ void InitGrid()
     }
 }
 
-void GenGrid()
+void GenGrid(char grid[SSIZE][SIZE][SIZE])
 {
     printf("\n\n");
 
@@ -61,7 +59,7 @@ void GenGrid()
     printf("\n\n");
 }
 
-void SelectGridCell(int *select_grid, int *select_grid_cell)
+void SelectGridCell(int *select_grid, int *select_grid_cell, struct Players *player)
 {
     for (int i = SIZE - 1; i > -1; i--)
     {
@@ -71,72 +69,75 @@ void SelectGridCell(int *select_grid, int *select_grid_cell)
 
             if (cell == *select_grid_cell - 1)
             {
-                grid[*select_grid - 1][i][j] = 'x';
+                //grid[*select_grid - 1][i][j] = player->cell_mark;
             }
         }
 
     }
 }
 
-void SelectGrid(int *select_grid)
+void SelectGrid(int *select_grid, int *player)
 {
     int game_on = 1;
     int select_grid_cell;
 
     while (game_on)
     {
-        scanf("%d", &select_grid_cell);
-
-        switch (*select_grid)
+        for (int cell = 1; cell <= SSIZE; cell++)
         {
-            case 1:
-                SelectGridCell(select_grid, &select_grid_cell);
-                game_on = 0;
-                break;
-            default:
-                printf("select a cell");
-                break;
+            if (cell == *select_grid)
+            {
+
+            }
         }
     }
 }
 
-void Game()
+void PlayerGridCellSelection(int *grid_selection, struct Players *player)
 {
-    struct Players *player;
-    struct Players *bot;
+    int game_on = 1;
+    int player_turn = player->player;
 
-    player->player = 0;
-    player->cell_mark = mark[rand() % 2];
+    int player_select_cell;
 
-    bot->player = 1;
-    if (player->cell_mark == mark[0])
+    while (game_on)
     {
-        bot->cell_mark = mark[1];
+        if (player->player == 0)
+        {
+            scanf("%d", &player_select_cell);
+            SelectGridCell(grid_selection, &player_select_cell, player);
+        }
     }
-    else
+}
+
+void PlayersGridSelection(int *grid_selection, struct Players *player)
+{
+    for (int grid = 1; grid <= SIZE*SIZE; grid++)
     {
-        bot->cell_mark = mark[0];
+        if (grid == *grid_selection)
+        {
+            PlayerGridCellSelection(grid_selection, player);
+        }
     }
+}
 
-    // ====
+void Game(struct Players *player, struct Players *bot, bool *game_on)
+{
 
-    int first_plays = rand() % 2;
+    //int first_plays = rand() % 2;
+    int first_plays = 0;
 
     int select_grid;
+    int bot_select_grid;
 
     if (first_plays == 0){
         scanf("%d", &select_grid);
+        PlayersGridSelection(&select_grid, player);
     }
-
-    switch (select_grid)
+    else
     {
-        case 1:
-            SelectGrid(&select_grid);
-            break;
-        default:
-            printf("values between 1-9");
-            break;
+        bot_select_grid = rand() % 8 + 1;
+        PlayersGridSelection(&bot_select_grid, bot);
     }
-
 
 }
