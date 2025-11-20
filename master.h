@@ -21,9 +21,9 @@ void SelectGridCell(Grid grid, int *select_grid, int *select_grid_cell, struct P
 
 void SelectGrid(int *select_grid, int *player);
 
-void PlayerGridCellSelection(Grid grid, int *grid_selection, struct Players *player);
+void PlayerGridCellSelection(Grid grid, int *grid_selection, struct Players *player, struct Players *bot);
 
-void PlayerGridSelection(Grid grid, int *grid_selection, struct Players *player);
+void PlayerGridSelection(Grid grid, int *grid_selection, struct Players *player, struct Players *bot);
 
 void Game(Grid grid, struct Players *player, struct Players *bot);
 

@@ -6,6 +6,8 @@
 
 int main()
 {
+    srand(time(NULL));
+
     Grid grid;
     char mark[2] = {'x', 'o'};
 
@@ -35,7 +37,7 @@ int main()
 
     // ====
     /*
-    srand(time(NULL));
+
     for (int i = 0; i < 7; i++)
     {
         int random_val = rand();

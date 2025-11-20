@@ -93,34 +93,44 @@ void SelectGrid(int *select_grid, int *player)
     }
 }
 
-void PlayerGridCellSelection(Grid grid, int *grid_selection, struct Players *player)
+void PlayerGridCellSelection(Grid grid, int *grid_selection, struct Players *player, struct Players *bot)
 {
     int game_on = 1;
     int player_turn = player->player;
     printf("playergridcell %d\n", player->player);
 
     int player_select_cell;
+    int bot_select_cell;
 
     while (game_on)
     {
-        if (player->player == 0)
+        if (player_turn == 0)
         {
             printf("select cell: ");
             scanf("%d", &player_select_cell);
             SelectGridCell(grid, grid_selection, &player_select_cell, player);
             GenGrid(grid);
+            player_turn = bot->player;
+        }
+        else if (player_turn == 1)
+        {
+            printf("bot select cell");
+            bot_select_cell = rand() % 9;
+            SelectGridCell(grid, grid_selection, &player_select_cell, bot);
+            GenGrid(grid);
+            player_turn = player->player;
         }
     }
 }
 
-void PlayersGridSelection(Grid grid, int *grid_selection, struct Players *player)
+void PlayersGridSelection(Grid grid, int *grid_selection, struct Players *player, struct Players *bot)
 {
     for (int grid_idx = 1; grid_idx <= SIZE*SIZE; grid_idx++)
     {
         if (grid_idx == *grid_selection)
         {
 
-            PlayerGridCellSelection(grid, grid_selection, player);
+            PlayerGridCellSelection(grid, grid_selection, player, bot);
         }
     }
 }
@@ -142,7 +152,7 @@ void Game(Grid grid, struct Players *player, struct Players *bot)
             printf("select grid: ");
             scanf("%d", &select_grid);
             printf("\nselected grid %d", select_grid);
-            PlayersGridSelection(grid, &select_grid, player);
+            PlayersGridSelection(grid, &select_grid, player, bot);
         }
         /*
         else
