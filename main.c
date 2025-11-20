@@ -10,29 +10,27 @@ int main()
     char mark[2] = {'x', 'o'};
 
     InitGrid(grid);
-    struct Players *player;
-    struct Players *bot;
+    struct Players player;
+    struct Players bot;
 
     // initialize players
-    player->player = 0;
-    player->cell_mark = mark[rand() % 2];
+    player.player = 0;
+    player.cell_mark = mark[rand() % 2];
 
-    bot->player = 1;
-    if (player->cell_mark == mark[0])
+    bot.player = 1;
+    if (player.cell_mark == mark[0])
     {
-        bot->cell_mark = mark[1];
+        bot.cell_mark = mark[1];
     }
     else
     {
-        bot->cell_mark = mark[0];
+        bot.cell_mark = mark[0];
     }
 
+    GenGrid(grid);
+    printf("====\n");
 
-    player->player = 1;
-
-    bool game_on = true;
-
-    Game(grid, player, bot);
+    Game(grid, &player, &bot);
 
 
     // ====

@@ -17,7 +17,7 @@ void InitGrid(Grid grid);
 
 void GenGrid(Grid grid);
 
-void SelectGridCell(int *select_grid, int *select_grid_cell, struct Players *player);
+void SelectGridCell(Grid grid, int *select_grid, int *select_grid_cell, struct Players *player);
 
 void SelectGrid(int *select_grid, int *player);
 
