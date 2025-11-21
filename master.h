@@ -6,6 +6,11 @@
 
 typedef char Grid[SSIZE][SIZE][SIZE];
 
+typedef struct
+{
+    char marks[SIZE];
+}PlayerQueue;
+
 struct Players
 {
     int player;
@@ -16,6 +21,8 @@ struct Players
 void InitGrid(Grid grid);
 
 void GenGrid(Grid grid);
+
+void placeMark(Grid grid, Queue *q, int row, int col, char mark);
 
 void SelectGridCell(Grid grid, int *select_grid, int *select_grid_cell, struct Players *player);
 

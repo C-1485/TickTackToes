@@ -36,14 +36,14 @@ int main()
 
 
     // ====
-    /*
 
-    for (int i = 0; i < 7; i++)
-    {
-        int random_val = rand();
-        int random = rand() % 9;
-        printf("%d - ", random_val);
-        printf("%d\n", random);
-    }
-    */
+
+    // for (int i = 0; i < 20; i++)
+    // {
+    //     int random_val = rand();
+    //     int random = rand() % 8 + 1;
+    //     printf("%d - ", random_val);
+    //     printf("%d\n", random);
+    // }
+
 }

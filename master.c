@@ -59,6 +59,33 @@ void GenGrid(Grid grid)
     printf("\n\n");
 }
 
+void placeMark(Grid grid, Queue *q, int row, int col, char mark) {
+    // place new mark
+    grid[row][col] = mark;
+
+    // add to queue
+    q->r[q->count] = row;
+    q->c[q->count] = col;
+    q->count++;
+
+    // if more than 3, remove the oldest unless this is a winning move
+    if (q->count > 3) {
+        int old_r = q->r[0];
+        int old_c = q->c[0];
+
+        // shift queue left
+        for (int i = 1; i < q->count; i++) {
+            q->r[i-1] = q->r[i];
+            q->c[i-1] = q->c[i];
+        }
+        q->count--;
+
+        // clear oldest mark if NOT winning
+        grid[old_r][old_c] = ' ';
+    }
+}
+
+
 void SelectGridCell(Grid grid, int *select_grid, int *select_grid_cell, struct Players *player)
 {
     for (int i = SIZE - 1; i > -1; i--)
@@ -104,6 +131,7 @@ void PlayerGridCellSelection(Grid grid, int *grid_selection, struct Players *pla
 
     while (game_on)
     {
+
         if (player_turn == 0)
         {
             printf("select cell: ");
@@ -111,15 +139,19 @@ void PlayerGridCellSelection(Grid grid, int *grid_selection, struct Players *pla
             SelectGridCell(grid, grid_selection, &player_select_cell, player);
             GenGrid(grid);
             player_turn = bot->player;
+
         }
-        else if (player_turn == 1)
+        if (player_turn == 1)
         {
-            printf("bot select cell");
-            bot_select_cell = rand() % 9;
-            SelectGridCell(grid, grid_selection, &player_select_cell, bot);
+            printf("bot select cell: ");
+            //bot_select_cell = rand() % 8 + 1;
+            scanf("%d", &bot_select_cell);
+            printf("%d", bot_select_cell);
+            SelectGridCell(grid, grid_selection, &bot_select_cell, bot);
             GenGrid(grid);
             player_turn = player->player;
         }
+
     }
 }
 
@@ -144,6 +176,7 @@ void Game(Grid grid, struct Players *player, struct Players *bot)
 
     int select_grid;
     int bot_select_grid;
+    bool round_won = false;
 
 
     while (game_on)
